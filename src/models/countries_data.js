@@ -9,7 +9,7 @@ CountriesData.prototype.getData = function () {
   const request = new RequestHelper("https://restcountries.eu/rest/v2/all");
   request.get((countriesData) => {
     this.data = countriesData;
-    console.dir(countriesData);
+    // console.dir(countriesData);
     PubSub.publish("CountriesData:countries-loaded", countriesData);
   })
 };
@@ -17,13 +17,13 @@ CountriesData.prototype.getData = function () {
 CountriesData.prototype.bindEvents = function () {
   PubSub.subscribe("SelectView:country-selected", (event) => {
     const selectedCountryIndex = event.detail;
-    console.log("CountriesData country index", selectedCountryIndex);
+    // console.log("CountriesData country index", selectedCountryIndex);
     const selectedCountryObject = this.data[selectedCountryIndex];
-    console.log("countries data from bind events", this.data);
-    console.log(selectedCountryIndex);
+    // console.log("countries data from bind events", this.data);
+    // console.log(selectedCountryIndex);
 
     PubSub.publish("CountriesData:country-ready", selectedCountryObject);
-    console.dir(selectedCountryObject);
+    // console.dir(selectedCountryObject);
   });
 
 };
