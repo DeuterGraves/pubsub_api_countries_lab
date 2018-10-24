@@ -1,5 +1,6 @@
 const PubSub = require('../helpers/pub_sub.js');
 
+
 // select constructor
 const SelectView = function(element){
   this.element = element;
@@ -17,9 +18,9 @@ this.element.addEventListener("change", (event)=> {
   const selectedCountryIndex = event.target.value;
   // publish - country selected
   PubSub.publish("SelectView:country-selected", selectedCountryIndex);
-  console.log(selectedCountryIndex);
+  console.log("select view country index", selectedCountryIndex);
 });
-  
+
 };
 
 // populate the drop down
