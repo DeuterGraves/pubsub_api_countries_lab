@@ -12,6 +12,14 @@ SelectView.prototype.bindEvents = function () {
     const allCountries = event.detail;
     this.populate(allCountries);
   });
+  // listen for user selection
+this.element.addEventListener("change", (event)=> {
+  const selectedCountryIndex = event.target.value;
+  // publish - country selected
+  PubSub.publish("SelectView:country-selected", selectedCountryIndex);
+  console.log(selectedCountryIndex);
+});
+  
 };
 
 // populate the drop down
@@ -22,10 +30,10 @@ SelectView.prototype.populate = function (allCountries) {
     option.value = index;
     this.element.appendChild(option);
   });
+
 };
 
-// listen for user selection
-// publish - country selected
+
 
 
 module.exports = SelectView;
